@@ -2,7 +2,7 @@ import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { extname, join } from "node:path";
 import { pathToFileURL } from "node:url";
 
-const routes = ["hash", "block", "blockchain", "distributed", "tokens", "coinbase", "utxo", "ethereum", "solana", "keys", "signatures", "transaction"];
+const routes = ["", "hash", "block", "blockchain", "distributed", "tokens", "coinbase", "utxo", "ethereum", "solana", "keys", "signatures", "transaction"];
 const source = join(process.cwd(), "dist");
 const output = join(process.cwd(), "dist-netlify");
 const client = join(source, "client");
@@ -35,12 +35,14 @@ const serverUrl = pathToFileURL(join(source, "server", "index.js")).href;
 const { default: worker } = await import(`${serverUrl}?netlify-export=${Date.now()}`);
 
 for (const route of routes) {
-  const response = await worker.fetch(new Request(`https://blockchain.corelia.academy/${route}`), { ASSETS: assetBinding });
+  const response = await worker.fetch(new Request(`https://lab.corelia.academy/${route}`), { ASSETS: assetBinding });
   if (!response.ok) throw new Error(`Unable to prerender /${route}: HTTP ${response.status}`);
-  const directory = join(output, route);
-  await mkdir(directory, { recursive: true });
-  await writeFile(join(directory, "index.html"), await response.text());
+  if (route) {
+    const directory = join(output, route);
+    await mkdir(directory, { recursive: true });
+    await writeFile(join(directory, "index.html"), await response.text());
+  } else {
+    await writeFile(join(output, "index.html"), await response.text());
+  }
 }
-
-await writeFile(join(output, "index.html"), await readFile(join(output, "hash", "index.html")));
 console.log(`Netlify export complete: ${routes.length} routes in dist-netlify`);

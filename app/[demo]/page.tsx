@@ -1,4 +1,5 @@
 import Demo from "../demo";
+import { redirect } from "next/navigation";
 const pages = [
   "hash",
   "block",
@@ -19,5 +20,6 @@ export default async function DemoRoute({
   params: Promise<{ demo: string }>;
 }) {
   const { demo } = await params;
-  return <Demo page={pages.includes(demo) ? demo : "hash"} />;
+  if (!pages.includes(demo)) redirect("/");
+  return <Demo page={demo} />;
 }

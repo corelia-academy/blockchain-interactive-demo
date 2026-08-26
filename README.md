@@ -6,6 +6,8 @@ keys, digital signatures, and signed transactions.
 
 Built by [Corelia Academy](https://corelia.academy/).
 
+Live lab: [lab.corelia.academy](https://lab.corelia.academy/)
+
 Source repository:
 [corelia-academy/blockchain-interactive-demo](https://github.com/corelia-academy/blockchain-interactive-demo)
 
@@ -36,7 +38,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000/hash](http://localhost:3000/hash).
+Open [http://localhost:3000](http://localhost:3000).
 
 ## Validation
 

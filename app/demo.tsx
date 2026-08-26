@@ -23,9 +23,10 @@ const enc = (v: string) => new TextEncoder().encode(v),
       .map((x) => x.toString(16).padStart(2, "0"))
       .join(""),
   sha = async (v: string) => hex(await crypto.subtle.digest("SHA-256", enc(v)));
-function Header({ page }: { page: string }) {
+export function Header({ page }: { page: string }) {
   const { locale, setLocale, t } = useI18n();
   const [languageOpen, setLanguageOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const currentLanguage =
     languages.find((item) => item.code === locale) ?? languages[0];
   function chooseLanguage(code: Locale) {
@@ -34,7 +35,7 @@ function Header({ page }: { page: string }) {
   }
   return (
     <header>
-      <Link className="brand" href="/hash">
+      <Link className="brand" href="/">
         <Image
           src="/Corelia_Academy_Logo_Dark.png"
           alt="Corelia Academy"
@@ -46,14 +47,22 @@ function Header({ page }: { page: string }) {
       </Link>
       <button
         className="menu"
-        onClick={() => document.querySelector("nav")?.classList.toggle("open")}
+        type="button"
+        aria-label={t("Navigation")}
+        aria-expanded={menuOpen}
+        aria-controls="main-navigation"
+        onClick={() => setMenuOpen((open) => !open)}
       >
-        ☰
+        <span aria-hidden="true">{menuOpen ? "×" : "☰"}</span>
       </button>
-      <nav>
+      <nav id="main-navigation" className={menuOpen ? "open" : ""}>
         {nav.map(([slug, label], i) => (
           <span key={slug} className={i === 9 ? "split" : ""}>
-            <Link className={page === slug ? "active" : ""} href={"/" + slug}>
+            <Link
+              className={page === slug ? "active" : ""}
+              href={"/" + slug}
+              onClick={() => setMenuOpen(false)}
+            >
               {t(label)}
             </Link>
           </span>
@@ -92,6 +101,24 @@ function Header({ page }: { page: string }) {
         )}
       </div>
     </header>
+  );
+}
+
+export function Footer() {
+  const { t } = useI18n();
+  return (
+    <footer className="siteFooter">
+      <a href="https://corelia.academy/" target="_blank" rel="noreferrer">
+        Corelia Academy
+      </a>
+      <a
+        href="https://github.com/corelia-academy/blockchain-interactive-demo"
+        target="_blank"
+        rel="noreferrer"
+      >
+        {t("View source on GitHub")}
+      </a>
+    </footer>
   );
 }
 function Card({
@@ -2234,7 +2261,7 @@ function DemoContent({ page }: { page: string }) {
         ? "Real Blockchain Work with Bitcoin"
         : nav.find((n) => n[0] === page)?.[1];
   return (
-    <>
+    <div className="siteShell">
       <Header page={page} />
       <main className={"container " + (narrow ? "" : "fluid")}>
         <div className="pageTitle">
@@ -2242,19 +2269,8 @@ function DemoContent({ page }: { page: string }) {
         </div>
         {content}
       </main>
-      <footer className="siteFooter">
-        <a href="https://corelia.academy/" target="_blank" rel="noreferrer">
-          Corelia Academy
-        </a>
-        <a
-          href="https://github.com/corelia-academy/blockchain-interactive-demo"
-          target="_blank"
-          rel="noreferrer"
-        >
-          {t("View source on GitHub")}
-        </a>
-      </footer>
-    </>
+      <Footer />
+    </div>
   );
 }
 

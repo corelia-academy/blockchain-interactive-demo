@@ -6,13 +6,8 @@
   NODE_VERSION = "22.13.0"
 
 [[redirects]]
-  from = "/"
-  to = "/hash"
-  status = 302
-
-[[redirects]]
   from = "/*"
-  to = "/hash/index.html"
+  to = "/index.html"
   status = 200
 
 [[headers]]

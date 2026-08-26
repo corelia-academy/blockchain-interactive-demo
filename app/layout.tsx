@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://lab.corelia.academy"),
   title: "Corelia Blockchain Playground",
   description:
     "An interactive lab for exploring hashes, blocks, keys, and digital signatures.",
