@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { Footer, Header } from "./demo";
 import { I18nProvider, useI18n } from "./i18n";
 
@@ -41,9 +40,9 @@ function HomeContent() {
               <h2>{t(group.title)}</h2>
               <div className="demoGrid">
                 {group.demos.map(([slug, title]) => (
-                  <Link className="demoChoice" href={`/${slug}`} key={slug}>
+                  <a className="demoChoice" href={`/${slug}`} key={slug}>
                     <span>{t(title)}</span><b aria-hidden="true">→</b>
-                  </Link>
+                  </a>
                 ))}
               </div>
             </section>

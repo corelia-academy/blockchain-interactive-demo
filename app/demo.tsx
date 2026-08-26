@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { I18nProvider, languages, Localized, Locale, useI18n } from "./i18n";
 const nav = [
@@ -35,7 +34,9 @@ export function Header({ page }: { page: string }) {
   }
   return (
     <header>
-      <Link className="brand" href="/">
+      {/* Static Netlify export requires a full document navigation. */}
+      {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+      <a className="brand" href="/">
         <Image
           src="/Corelia_Academy_Logo_Dark.png"
           alt="Corelia Academy"
@@ -44,7 +45,7 @@ export function Header({ page }: { page: string }) {
           priority
         />
         <b>{t("Blockchain Demo")}</b>
-      </Link>
+      </a>
       <button
         className="menu"
         type="button"
@@ -58,13 +59,13 @@ export function Header({ page }: { page: string }) {
       <nav id="main-navigation" className={menuOpen ? "open" : ""}>
         {nav.map(([slug, label], i) => (
           <span key={slug} className={i === 9 ? "split" : ""}>
-            <Link
+            <a
               className={page === slug ? "active" : ""}
               href={"/" + slug}
               onClick={() => setMenuOpen(false)}
             >
               {t(label)}
-            </Link>
+            </a>
           </span>
         ))}
       </nav>
