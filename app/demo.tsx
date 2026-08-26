@@ -36,7 +36,7 @@ function Header({ page }: { page: string }) {
     <header>
       <Link className="brand" href="/hash">
         <Image
-          src="/Corelia_Academy_Logo_White.png"
+          src="/Corelia_Academy_Logo_Dark.png"
           alt="Corelia Academy"
           width={750}
           height={300}
@@ -2242,6 +2242,18 @@ function DemoContent({ page }: { page: string }) {
         </div>
         {content}
       </main>
+      <footer className="siteFooter">
+        <a href="https://corelia.academy/" target="_blank" rel="noreferrer">
+          Corelia Academy
+        </a>
+        <a
+          href="https://github.com/corelia-academy/blockchain-interactive-demo"
+          target="_blank"
+          rel="noreferrer"
+        >
+          {t("View source on GitHub")}
+        </a>
+      </footer>
     </>
   );
 }

@@ -31,6 +31,7 @@ const messages: Record<Locale, Record<string, string>> = {
       "Example: The sender has a {input} BTC UTXO and wants the recipient to receive exactly {recipient} BTC. The remainder returns to the sender after the fee.",
   },
   "zh-CN": {
+    "View source on GitHub": "在 GitHub 查看源代码",
     Algorithm: "算法：",
     "ECDSA with the NIST P-256 curve (secp256r1). Signatures use SHA-256. This is not Bitcoin's secp256k1 curve.":
       "使用 NIST P-256 曲线（secp256r1）的 ECDSA。签名使用 SHA-256。这不是 Bitcoin 使用的 secp256k1 曲线。",
@@ -88,6 +89,7 @@ const messages: Record<Locale, Record<string, string>> = {
     Language: "语言",
   },
   ko: {
+    "View source on GitHub": "GitHub에서 소스 보기",
     Algorithm: "알고리즘:",
     "ECDSA with the NIST P-256 curve (secp256r1). Signatures use SHA-256. This is not Bitcoin's secp256k1 curve.":
       "NIST P-256 곡선(secp256r1)을 사용하는 ECDSA입니다. 서명에는 SHA-256을 사용합니다. Bitcoin의 secp256k1 곡선과는 다릅니다.",
@@ -144,6 +146,7 @@ const messages: Record<Locale, Record<string, string>> = {
     Language: "언어",
   },
   es: {
+    "View source on GitHub": "Ver código en GitHub",
     Algorithm: "Algoritmo:",
     "ECDSA with the NIST P-256 curve (secp256r1). Signatures use SHA-256. This is not Bitcoin's secp256k1 curve.":
       "ECDSA con la curva NIST P-256 (secp256r1). Las firmas usan SHA-256. No es la curva secp256k1 de Bitcoin.",
@@ -202,6 +205,7 @@ const messages: Record<Locale, Record<string, string>> = {
     Language: "Idioma",
   },
   "zh-TW": {
+    "View source on GitHub": "在 GitHub 查看原始碼",
     Algorithm: "演算法：",
     "ECDSA with the NIST P-256 curve (secp256r1). Signatures use SHA-256. This is not Bitcoin's secp256k1 curve.":
       "使用 NIST P-256 曲線（secp256r1）的 ECDSA。簽章使用 SHA-256。這不是 Bitcoin 使用的 secp256k1 曲線。",
@@ -261,6 +265,7 @@ const messages: Record<Locale, Record<string, string>> = {
     Language: "語言",
   },
   vi: {
+    "View source on GitHub": "Xem mã nguồn trên GitHub",
     Algorithm: "Thuật toán:",
     "ECDSA with the NIST P-256 curve (secp256r1). Signatures use SHA-256. This is not Bitcoin's secp256k1 curve.":
       "ECDSA với đường cong NIST P-256 (secp256r1). Chữ ký sử dụng SHA-256. Đây không phải đường cong secp256k1 của Bitcoin.",
@@ -319,6 +324,7 @@ const messages: Record<Locale, Record<string, string>> = {
     Language: "Ngôn ngữ",
   },
   ja: {
+    "View source on GitHub": "GitHubでソースを見る",
     Algorithm: "アルゴリズム：",
     "ECDSA with the NIST P-256 curve (secp256r1). Signatures use SHA-256. This is not Bitcoin's secp256k1 curve.":
       "NIST P-256曲線（secp256r1）を使用するECDSAです。署名にはSHA-256を使用します。Bitcoinのsecp256k1曲線ではありません。",

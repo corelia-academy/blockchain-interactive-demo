@@ -1,100 +1,85 @@
-# vinext-starter
+# Corelia Blockchain Interactive Demo
 
-A clean full-stack starter running on
-[vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
-Drizzle support.
+An interactive learning lab for exploring hashes, blocks, distributed chains,
+token ledgers, Bitcoin transactions, UTXOs, Ethereum, Solana, public/private
+keys, digital signatures, and signed transactions.
 
-## Prerequisites
+Built by [Corelia Academy](https://corelia.academy/).
 
-- Node.js `>=22.13.0`
+Source repository:
+[corelia-academy/blockchain-interactive-demo](https://github.com/corelia-academy/blockchain-interactive-demo)
 
-## Quick Start
+## Features
+
+- SHA-256 hash and block demonstrations
+- Linked and distributed blockchain simulations
+- Token and Bitcoin transaction examples
+- A standalone Bitcoin UTXO transaction explainer
+- Ethereum account, nonce, and gas demonstration
+- Solana slot, account, instruction, and fee demonstration
+- ECDSA P-256 public/private keys and SHA-256 signatures
+- Seven interface languages with English as the default
+- Responsive Corelia Academy interface
+
+All blockchain addresses, hashes, signatures, and transactions shown in the
+application are simulated educational data. They are not mainnet records.
+
+## Requirements
+
+- Node.js 22.13.0 or newer
+- npm
+
+## Local Development
 
 ```bash
 npm install
 npm run dev
-npm run build
 ```
 
-This starter does not use `wrangler.jsonc`.
+Open [http://localhost:3000/hash](http://localhost:3000/hash).
 
-## Included Shape
+## Validation
 
-- edit site code under `app/`
-- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
-- `vite.config.ts` simulates declared bindings for local development
-- `db/schema.ts` starts intentionally empty
-- `examples/d1/` contains an optional D1 example surface
-- `drizzle.config.ts` supports local migration generation when needed
-
-## Workspace Auth Headers
-
-Signed-in visitors receive both `oai-authenticated-user-id` and `oai-authenticated-user-email`. Private Sites require every visitor to sign in; public Sites may also have anonymous visitors, for whom neither header is present.
-
-The user ID is stable for the same user on the same Site and different across Sites. Email and name are intended for display or contact purposes.
-
-SIWC-authenticated workspace sites may also receive
-`oai-authenticated-user-full-name` when the user's SIWC profile has a non-empty
-`name` claim. The full-name value is percent-encoded UTF-8 and is accompanied by
-`oai-authenticated-user-full-name-encoding: percent-encoded-utf-8`.
-
-Treat the full name as optional and fall back to email when it is absent:
-
-```tsx
-import { headers } from "next/headers";
-
-export default async function Home() {
-  const requestHeaders = await headers();
-  const userId = requestHeaders.get("oai-authenticated-user-id");
-  const email = requestHeaders.get("oai-authenticated-user-email");
-  const encodedFullName = requestHeaders.get("oai-authenticated-user-full-name");
-  const fullName =
-    encodedFullName &&
-    requestHeaders.get("oai-authenticated-user-full-name-encoding") ===
-      "percent-encoded-utf-8"
-      ? decodeURIComponent(encodedFullName)
-      : null;
-
-  const displayName = fullName ?? email;
-  // ...
-}
+```bash
+npm test
 ```
 
-## Optional Dispatch-Owned ChatGPT Sign-In
+This runs the production build and ESLint checks.
 
-Import the ready-to-use helpers from `app/chatgpt-auth.ts` when the site needs
-optional or required ChatGPT sign-in:
+## Netlify Deployment
 
-- Use `getChatGPTUser()` for optional signed-in UI.
-- Use `requireChatGPTUser(returnTo)` for server-rendered pages that should send
-  anonymous visitors through Sign in with ChatGPT.
-- Use `chatGPTSignInPath(returnTo)` and `chatGPTSignOutPath(returnTo)` for
-  browser links or actions.
-- Pass a same-origin relative `returnTo` path for the destination after sign-in
-  or sign-out. The helper validates and safely encodes it.
-- Mark protected pages with `export const dynamic = "force-dynamic"` because
-  they depend on per-request identity headers.
+The repository includes `netlify.toml` and a static export workflow for
+Netlify. Netlify should use the settings committed in that file:
 
-Dispatch owns `/signin-with-chatgpt`, `/signout-with-chatgpt`, `/callback`, the
-OAuth cookies, and identity header injection. Do not implement app routes for
-those reserved paths. Routes that do not import and call the helper remain
-anonymous-compatible.
+- Build command: `npm run build:netlify`
+- Publish directory: `dist-netlify`
+- Node.js version: `22.13.0`
 
-SIWC establishes identity only; it does not prove workspace membership. Use the
-Sites hosting platform's access policy controls for workspace-wide restrictions,
-or enforce explicit server-side membership or allowlist checks.
+To verify the Netlify output locally:
 
-Use SIWC for account pages, user-specific dashboards, saved records, and write
-actions tied to the current ChatGPT user. Leave public content anonymous.
+```bash
+npm run build:netlify
+```
 
-## Useful Commands
+The regular `npm run build` command remains available for the existing vinext
+and Cloudflare-compatible build.
 
-- `npm run dev`: start local development
-- `npm run build`: verify the vinext build output
-- `npm test`: build the starter and verify its rendered loading skeleton
-- `npm run db:generate`: generate Drizzle migrations after schema changes
+## Credits
 
-## Learn More
+This educational project is inspired by and builds upon the teaching approach,
+sample data, and interactive concepts from Anders Brownworth's open-source
+blockchain demonstrations:
 
-- [vinext Documentation](https://github.com/cloudflare/vinext)
-- [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+- [anders94/blockchain-demo](https://github.com/anders94/blockchain-demo)
+- [anders94/public-private-key-demo](https://github.com/anders94/public-private-key-demo)
+
+The interface, expanded Bitcoin and UTXO explanations, Ethereum and Solana
+examples, internationalization, responsive styling, and Corelia Academy
+branding were developed for this repository.
+
+Please refer to the upstream repositories for their original source and license
+terms.
+
+## License
+
+This repository is released under the [MIT License](LICENSE).
