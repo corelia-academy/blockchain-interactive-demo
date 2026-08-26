@@ -14,7 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Corelia Blockchain Playground",
-  description: "An interactive lab for exploring hashes, blocks, keys, and digital signatures.",
+  description:
+    "An interactive lab for exploring hashes, blocks, keys, and digital signatures.",
   icons: {
     icon: "/corelia_favicon.svg",
     shortcut: "/corelia_favicon.svg",
@@ -27,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi">
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
